@@ -1,11 +1,4 @@
 // =============================
-// Initialisation d'EmailJS
-// =============================
-(function() {
-  emailjs.init("TJHX0tkW1CCz7lv7a"); // clé publique EmailJS
-})();
-
-// =============================
 // Variables globales
 // =============================
 let user = {
@@ -219,7 +212,7 @@ function endQuiz() {
   document.getElementById("explication").innerHTML = "";
 
   const owner = "ppruvost";
-  const repo = "mathématiques-sciences";
+  const repo = "sciences-MRU-MRUV";
   const title = `Quiz result: ${user.nom} ${user.prenom}`;
   const bodyLines = [
     `Nom: ${user.nom}`,
@@ -236,6 +229,7 @@ function endQuiz() {
   // Ouvre la page de création d'issue préremplie (l'élève doit cliquer sur "Submit new issue" et être connecté)
   window.open(url, "_blank");
 }
+
 
 
 
