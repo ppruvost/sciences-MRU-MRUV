@@ -6,37 +6,42 @@ on:
 
 jobs:
   send_results:
-    if: startsWith(github.event.issue.title, 'Quiz result:')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        id: checkout
 
       - name: Setup Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-        id: setup-python
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests
-        id: install-deps
 
-      - name: Debug issue content
-        run: |
-          echo "Issue title: ${{ github.event.issue.title }}"
-          cat ${{ github.event_path }}
-        id: debug-issue
-
-      - name: Execute email sending script
+      - name: Validate issue and send email
         env:
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
           RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
           GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: |
+          ISSUE_TITLE=$(jq -r '.issue.title' $GITHUB_EVENT_PATH)
+          ISSUE_BODY=$(jq -r '.issue.body' $GITHUB_EVENT_PATH)
+
+          # Vérifier le titre
+          if [[ ! $ISSUE_TITLE =~ ^Quiz\ result: ]]; then
+            echo "Le titre de l'issue n'est pas valide. Arrêt."
+            exit 0
+          fi
+
+          # Vérifier le contenu (ex: doit contenir 'Score:')
+          if [[ ! $ISSUE_BODY =~ Score: ]]; then
+            echo "Le corps de l'issue ne contient pas de score. Arrêt."
+            exit 0
+          fi
+
+          # Si tout est OK, exécuter le script Python
           python .github/scripts/handle_issue_and_send.py
-        id: send-email
