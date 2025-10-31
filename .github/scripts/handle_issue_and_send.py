@@ -15,13 +15,7 @@ issue = event.get("issue", {})
 title = issue.get("title", "")
 body = issue.get("body", "")
 
-# Extraire les informations depuis le corps de l'issue (on suppose un format simple)
-# Exemple de corps attendu:
-# Nom: Dupont
-# Prénom: Paul
-# Score: 15 / 20
-# Timestamp: 2025-10-31T12:34:56Z
-
+# Extraire les informations depuis le corps de l'issue
 def parse_field(text, field_name):
     for line in text.splitlines():
         if line.strip().lower().startswith(field_name.lower() + ":"):
@@ -72,7 +66,7 @@ try:
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
         server.login(SENDER, PASSWORD)
         server.sendmail(SENDER, RECEIVER, message.as_string())
-    print("Email envoyé avec succès.")
+        print("Email envoyé avec succès.")
 except Exception as e:
     print("Erreur lors de l'envoi de l'email :", e)
     raise
