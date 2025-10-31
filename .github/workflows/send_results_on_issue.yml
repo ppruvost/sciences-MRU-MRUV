@@ -26,7 +26,6 @@ jobs:
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
           RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
-          GITHUB_EVENT_PATH: ${{ github.event_path }}
         run: |
           echo "Titre de l'issue: ${{ github.event.issue.title }}"
           # On ne lance le script que si le titre commence par "Quiz result:"
