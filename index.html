@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz MRU / MRUV - Seconde Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container" id="container">
+    <h1>Quiz MRU / MRUV</h1>
+    <p>
+      Testez vos connaissances sur le Mouvement Rectiligne Uniforme et le Mouvement Rectiligne Uniformément Varié !
+    </p>
+
+    <!-- =========================
+         FORMULAIRE D’IDENTIFICATION
+         ========================= -->
+    <div id="userForm">
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" placeholder="Entrez votre nom" required>
+
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" placeholder="Entrez votre prénom" required>
+
+      <button class="button" id="startQuiz">Commencer le quiz</button>
+    </div>
+
+    <!-- =========================
+         SECTION QUIZ (masquée au départ)
+         ========================= -->
+    <div id="quiz" style="display:none;"></div>
+
+    <!-- Bouton de validation (injecté dans JS ou ici si souhaité) -->
+    <button class="button" id="submit" style="display:none;">Soumettre</button>
+
+    <!-- Zone d'affichage score / explication -->
+    <div class="score" id="score"></div>
+    <div class="explication" id="explication"></div>
+  </div>
+
+  <!-- =========================
+       SCRIPTS
+       ========================= -->
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Script principal du quiz -->
+  <script src="quiz.js"></script>
+</body>
+</html>
+

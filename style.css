@@ -1,0 +1,135 @@
+/* ===============================
+   STYLE GLOBAL
+=============================== */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f8fb;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px #c9d2e3;
+}
+
+/* ===============================
+   TITRES
+=============================== */
+h1, h2 {
+  color: #215f92;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* ===============================
+   FORMULAIRE (nom / prénom)
+=============================== */
+#userForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#userForm label {
+  font-weight: bold;
+  color: #184060;
+}
+
+#userForm input[type="text"] {
+  padding: 8px 10px;
+  border: 1px solid #c3d1e2;
+  border-radius: 6px;
+  font-size: 1em;
+  transition: border-color 0.2s;
+}
+
+#userForm input[type="text"]:focus {
+  border-color: #296eb2;
+  outline: none;
+}
+
+/* ===============================
+   QUESTIONS ET OPTIONS
+=============================== */
+.question {
+  font-weight: bold;
+  font-size: 1.14em;
+  margin: 18px 0 8px 0;
+}
+
+.options {
+  margin-bottom: 14px;
+}
+
+.options label {
+  display: block;
+  margin-bottom: 7px;
+  background: #e9f1fa;
+  border-radius: 6px;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.options label:hover {
+  background: #cce1fb;
+}
+
+input[type="radio"] {
+  margin-right: 8px;
+}
+
+/* ===============================
+   BOUTONS
+=============================== */
+.button {
+  display: inline-block;
+  background: #296eb2;
+  color: #fff;
+  padding: 10px 24px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.06em;
+  transition: background 0.25s;
+}
+
+.button:hover {
+  background: #184060;
+}
+
+/* ===============================
+   SCORE ET EXPLICATIONS
+=============================== */
+.score {
+  font-size: 1.12em;
+  text-align: center;
+  margin: 18px 0 15px 0;
+  color: #1a4e70;
+}
+
+.explication {
+  border-radius: 7px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 1em;
+  line-height: 1.4;
+  border: 1px solid #d0e4d0;
+}
+
+.success {
+  color: #0c7a00;
+  background: #e3f7e1;
+  border: 1px solid #b6e2b5;
+}
+
+.fail {
+  color: #bc2929;
+  background: #fde
