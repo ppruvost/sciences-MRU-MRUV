@@ -211,13 +211,6 @@ function validateAnswer() {
 }
 
 // =============================
-// Initialisation EmailJS (à faire une seule fois)
-// =============================
-(function() {
-  emailjs.init("TJHX0tkW1CCz7lv7a"); // ta clé publique
-})();
-
-// =============================
 // Fin du quiz + Envoi du mail
 // =============================
 function endQuiz() {
@@ -225,24 +218,24 @@ function endQuiz() {
   document.getElementById("score").innerText = `Résultat final : ${score} / ${questions.length}`;
   document.getElementById("explication").innerHTML = "";
 
-  // Préparation des données à envoyer
-  const emailParams = {
-    nom: user.nom,
-    prenom: user.prenom,
-    score: `${score} / ${questions.length}`,
-    email: "patrick.pruvost50@gmail.com" // destinataire fixe
-  };
+  const owner = "ppruvost";
+  const repo = "mathématiques-sciences";
+  const title = `Quiz result: ${user.nom} ${user.prenom}`;
+  const bodyLines = [
+    `Nom: ${user.nom}`,
+    `Prénom: ${user.prenom}`,
+    `Score: ${score} / ${questions.length}`,
+    `Timestamp: ${new Date().toISOString()}`,
+    ``,
+    `---`,
+    `Données brutes (si besoin)`,
+  ];
+  const body = encodeURIComponent(bodyLines.join("\n"));
+  const url = `https://github.com/${owner}/${repo}/issues/new?title=${encodeURIComponent(title)}&body=${body}`;
 
-  // Envoi via EmailJS
-  emailjs
-    .send("service_cgh817y", "template_ly7s41e", emailParams)
-    .then(() => {
-      alert("✅ Résultats envoyés par e-mail !");
-    })
-    .catch((error) => {
-      console.error("❌ Erreur EmailJS :", error);
-      alert("Erreur lors de l’envoi : " + JSON.stringify(error));
-    });
+  // Ouvre la page de création d'issue préremplie (l'élève doit cliquer sur "Submit new issue" et être connecté)
+  window.open(url, "_blank");
 }
+
 
 
